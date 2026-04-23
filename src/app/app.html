@@ -1,15 +1,7 @@
-<div 
-  class="container-fluid"
->
-  <div 
-    class="row"
-  >
-    <div 
-      class="col-12"
-    >
-      <h1
-        class="text-uppercase"
-      >
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="text-uppercase">
         {{ title() }}
       </h1>
     </div>
@@ -31,16 +23,38 @@
         </a>
 
         <a 
+          routerLink="/cbares" 
+          class="list-group-item list-group-item-action"
+        >
+          Colin's Faves
+        </a>
+        <a 
+          routerLink="/dweise" 
+          class="list-group-item list-group-item-action"
+        >
+          Drew's Faves
+        </a>
+        <a 
+          routerLink="/thamilton" 
+          class="list-group-item list-group-item-action"
+        > 
+          Tim's Faves
+        </a>
+        <a 
+          routerLink="/tsteele" 
+          class="list-group-item list-group-item-action"
+        >
+          Tom's Faves
+        </a>
+        <a 
           routerLink="/lmeier" 
           class="list-group-item list-group-item-action"
         >
           Lou's Faves
-        </a>
+        </a>  
       </div>
     </div>
-    <div 
-      class="col-12 col-lg-9"
-    >
+    <div class="col-12 col-lg-9">
       <router-outlet />
     </div>
   </div>
