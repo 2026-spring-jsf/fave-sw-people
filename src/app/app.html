@@ -1,45 +1,42 @@
-<div 
-  class="container-fluid"
->
-  <div 
-    class="row"
-  >
-    <div 
-      class="col-12"
-    >
-      <h1
-        class="text-uppercase"
-      >
-        {{ title() }}
-      </h1>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="text-uppercase">{{ title() }}</h1>
     </div>
   </div>
-  <div 
-    class="row"
-  >
-    <div 
-      class="col-12 col-lg-3"
-    >
-      <div 
-        class="list-group"
-      >
-        <a 
-          routerLink="" 
-          class="list-group-item list-group-item-action"
-        >
+  <div class="row">
+    <div class="col-12 col-lg-3">
+      <div class="list-group">
+        <a routerLink="" class="list-group-item list-group-item-action">
           Home
         </a>
-        <a 
-          routerLink="/zsmuckerbryan" 
-          class="list-group-item list-group-item-action"
-        >
+        <a routerLink="/cbares" class="list-group-item list-group-item-action">
+          Colin's Faves
+        </a>
+        <a routerLink="/csnider" class="list-group-item list-group-item-action">
+          Craig's Faves
+        </a>
+        <a routerLink="/dweise" class="list-group-item list-group-item-action">
+          Drew's Faves
+        </a>
+        <a routerLink="/lmeier" class="list-group-item list-group-item-action">
+          Lou's Faves
+        </a>
+        <a routerLink="/mrooney" class="list-group-item list-group-item-action">
+          Mike's Faves
+        </a>
+        <a routerLink="/thamilton" class="list-group-item list-group-item-action">
+          Tim's Faves
+        </a>
+        <a routerLink="/tsteele" class="list-group-item list-group-item-action">
+          Tom's Faves
+        </a>
+        <a routerLink="/zsmuckerbryan" class="list-group-item list-group-item-action">
           Zac's faves
         </a>
       </div>
     </div>
-    <div 
-      class="col-12 col-lg-9"
-    >
+    <div class="col-12 col-lg-9">
       <router-outlet />
     </div>
   </div>
