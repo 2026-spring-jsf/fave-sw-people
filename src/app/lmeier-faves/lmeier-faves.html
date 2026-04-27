@@ -10,6 +10,12 @@
         >
             Promises as "then-ables"
         </button>
+        <button 
+            class="btn btn-link"
+            (click)="promisesWithAsyncAwait()"
+        >
+            Promises with async/await
+        </button>
     </li>
 
   @for (p of people$ | async; track p) {
