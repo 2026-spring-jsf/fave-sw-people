@@ -48,4 +48,29 @@ export class LmeierFaves {
             console.warn(e);
         }
     }
+
+    protected async promisesFun() {
+        try {
+            const numberOne = this.swPeopleSvc.getMagicNumber(false);
+            const numberTwo = this.swPeopleSvc.getMagicNumber(true);
+
+            // const data = await Promise.all(
+            //     [numberOne, numberTwo]
+            // );
+
+            const data = await Promise.any(
+                [numberOne, numberTwo]
+            );
+
+            // const data = await Promise.race(
+            //     [numberOne, numberTwo]
+            // );
+
+            console.log(data);
+        }
+
+        catch  (e) {
+            console.warn(e);
+        }
+    }
 }
