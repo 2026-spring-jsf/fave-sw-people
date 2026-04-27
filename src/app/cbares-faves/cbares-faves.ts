@@ -42,4 +42,34 @@ export class CbaresFaves {
       console.warn(e);
     }
   }
+
+    protected async promisesFun() {
+    try {
+
+      const numberOne = this.swPeopleSvc.getMagicNumber(false);
+      // console.log(numberOne);
+
+      const numberTwo = this.swPeopleSvc.getMagicNumber(true);
+      // console.log(numberTwo);
+
+      //returns array with results of all promises, or rejects if any promise rejects
+      // const data = await Promise.all(
+      //   [numberOne, numberTwo]
+      // );
+
+      // returns array with single result of first promise to resolve, or rejects if all promises reject
+      const data = await Promise.any(
+        [numberOne, numberTwo]
+      );
+
+      // if one resolves, cancels others
+      // const data = await Promise.race(
+      //   [numberOne, numberTwo]
+      // )
+
+      console.log(data);
+    } catch(e) {
+      console.warn(e);
+    }
+  }
 }
