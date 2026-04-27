@@ -13,4 +13,20 @@ export class CbaresFaves {
   private swPeopleSvc = inject(SwPeopleService);
 
   protected readonly people$ = this.swPeopleSvc.getSwPeople();
+
+  protected promisesAsThenables() {
+    const numberPromise = this.swPeopleSvc.getMagicNumber(true).then(
+      n => {
+        console.log(n);
+
+        this.swPeopleSvc.getMagicNumber(true).then(
+          n2 => console.log(n2)
+        ).catch(
+          e => console.warn(e)
+        )
+      }
+    ).catch(
+      e => console.warn(e)
+    )
+  }
 }
