@@ -39,4 +39,34 @@ export class ThamiltonFaves {
       console.warn(e);
     }
   }
+
+  protected async promisesFun() {
+    try {
+      //notice no 'await'
+      const numberOne = this.swPeopleSvc.getMagicNumber(false);
+      const numberTwo = this.swPeopleSvc.getMagicNumber(true);
+
+      /*
+      //this works only if all promises resolve and returns an array of promise values (not promises, but the promise values)
+      const data = await Promise.all([numberOne, numberTwo]);
+      */
+
+      /*
+      //this works only if not all promises are rejected (i.e. as long as at least one promise resolves) and returns only one promise value: the value of the first promise to resolve
+      const data = await Promise.any([numberOne, numberTwo]);
+      */
+
+      /*
+      //this works whether any number of promises resolve or are rejected, and returns only one promise value: the value of the first promise to settle (whether that promise resolved or was rejected)
+      const data = await Promise.race([numberOne, numberTwo]);
+      */
+
+      //this works whether any number of promises resolve or are rejected, and returns an array of promise objects, each with 2 properties: status ('fulfilled' or 'rejected'), and value (if status is 'fulfilled'), or reason (if status is 'rejected')
+      const data = await Promise.allSettled([numberOne, numberTwo]);
+
+      console.log(data);
+    } catch (e) {
+      console.warn(e);
+    }
+  }
 }
