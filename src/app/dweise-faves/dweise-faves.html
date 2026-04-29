@@ -9,6 +9,13 @@
     >Promises as then-ables</button>
   </li>
 
+  <li class="list-group-item">
+    <button 
+    class="btn btn-link"
+    (click)="promisesWithAsyncAwait()"
+    >Promises with async/await</button>
+  </li>
+
 
     @for (p of people$ | async; track p) {
       <li class="list-group-item">
