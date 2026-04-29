@@ -21,4 +21,24 @@ export class SwPeopleService {
       tap( x => console.log(x)),
     ); 
   }
+
+  public getMagicNumber(callerWantsToSucceed: boolean): Promise<number> {
+    return new Promise<number>(
+      (resolve, reject) => {
+
+        //
+        // Some fancy long running code here...
+        //
+
+        // Ultimately resolve to number...
+        if (callerWantsToSucceed) {
+          resolve(42);
+        }
+        // Or reject with error...
+        else {
+          reject("Error");
+        }
+      }
+    );
+  };
 }
