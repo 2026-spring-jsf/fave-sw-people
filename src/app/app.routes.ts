@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { ZsmuckerbryanFaves } from './zsmuckerbryan-faves/zsmuckerbryan-faves';
 
 import { CbaresFaves } from './cbares-faves/cbares-faves';
 import { CsniderFaves } from './csnider-faves/csnider-faves';
@@ -36,5 +37,9 @@ export const routes: Routes = [
     {
         path: "tsteele",
         component: TsteeleFaves,
+    },
+    {
+        path:"zsmuckerbryan",
+        component: ZsmuckerbryanFaves,
     },
 ];
