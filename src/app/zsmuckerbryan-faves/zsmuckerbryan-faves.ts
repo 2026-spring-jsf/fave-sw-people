@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { SwPeopleService } from '../sw-people.service';
 import { firstValueFrom } from 'rxjs';
 
@@ -19,6 +19,12 @@ export class ZsmuckerbryanFaves implements OnInit {
   // protected readonly people$ = this.swPeopleSvc.getSwPeople();
 
   protected readonly swPeople = signal<SwPerson[]>([]);
+
+  protected readonly selectedCount = computed(
+    () => this.swPeople().filter(
+      x => x.checked
+    ).length
+  );
 
   async ngOnInit() {
     const people = await firstValueFrom(
@@ -57,6 +63,22 @@ export class ZsmuckerbryanFaves implements OnInit {
       })
     )
    );
+  }
+
+  protected async postToMsTeams() {
+    await this.swPeopleSvc.postFavesToMsTeams(
+      {
+        name: `Zac's Faves (${this.selectedCount()})`,
+        faves: this.swPeople()
+        .filter(
+          x => x.checked
+        )
+        .map(
+          x => x.name
+        )
+        .join(", "),
+      }
+    );
   }
 
   protected promisesAsThenables() {

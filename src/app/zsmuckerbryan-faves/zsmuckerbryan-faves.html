@@ -2,8 +2,9 @@
     <li class="list-group-item list-group-item-secondary text-black-50">
         Zac's Faves
         <button 
-        class="btn btn-sm btn-primary ms-1">
-          Post X
+        class="btn btn-sm btn-primary ms-1"
+        (click)="postToMsTeams()">
+          Post {{ selectedCount() }}
         </button>
         <button 
         class="btn btn-sm btn-link"
