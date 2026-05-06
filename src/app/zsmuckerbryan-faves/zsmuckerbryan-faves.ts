@@ -1,17 +1,63 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { SwPeopleService } from '../sw-people.service';
-import { AsyncPipe } from '@angular/common';
+import { firstValueFrom } from 'rxjs';
+
+type SwPerson = {
+  name: string;
+  checked: boolean;
+};
 
 @Component({
   selector: 'app-zsmuckerbryan-faves',
-  imports: [AsyncPipe],
+  imports: [],
   templateUrl: './zsmuckerbryan-faves.html',
   styleUrl: './zsmuckerbryan-faves.css',
 })
-export class ZsmuckerbryanFaves {
+export class ZsmuckerbryanFaves implements OnInit {
   private swPeopleSvc = inject(SwPeopleService);
 
-  protected readonly people$ = this.swPeopleSvc.getSwPeople();
+  // protected readonly people$ = this.swPeopleSvc.getSwPeople();
+
+  protected readonly swPeople = signal<SwPerson[]>([]);
+
+  async ngOnInit() {
+    const people = await firstValueFrom(
+      this.swPeopleSvc.getSwPeople()
+    );
+
+    this.swPeople.set(
+      people.map(
+        (x: any) => ({
+          name: x,
+          checked: false,
+        })
+      )
+    );
+  }
+
+  protected toggleChecked(persontoToggle: SwPerson) {
+   this.swPeople.set(
+    this.swPeople().map(
+      x => ({
+        ...x,
+        checked: x == persontoToggle
+         ? !x .checked
+         : x.checked,
+      })
+    )
+   );
+  }
+
+  protected clearSelected() {
+   this.swPeople.set(
+    this.swPeople().map(
+      x => ({
+        ...x,
+        checked: false,
+      })
+    )
+   );
+  }
 
   protected promisesAsThenables() {
     const numberPromise = this.swPeopleSvc.getMagicNumber(true)
