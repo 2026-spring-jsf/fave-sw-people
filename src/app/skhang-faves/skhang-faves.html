@@ -1,5 +1,11 @@
 <ul class="list-group">
-  <li class="list-group-item list-group-item-secondary text-black-50">Shaun's Faves</li>
+  <li class="list-group-item list-group-item-secondary text-black-50">
+    Shaun's Faves
+    <button class="btn btn-sm btn-primary ms-1" (click)="postToMSTeams()">
+      Post {{ selectedCount() }}
+    </button>
+    <button class="btn btn-sm btn-link" (click)="clearSelected()">Clear</button>
+  </li>
   <li class="list-group-item">
     <button class="btn btn-link" (click)="promisesAsThenables()">Promises as "then-ables"</button>
     <button class="btn btn-link" (click)="promisesWithAsyncAwait()">
@@ -8,11 +14,16 @@
     <button class="btn btn-link" (click)="promisesFun()">Promises fun ! ! !</button>
   </li>
 
-  @for (p of people$ | async; track p) {
+  @for (p of swPeople(); track p) {
     <li class="list-group-item">
       <label>
-        <input type="checkbox" class="form-check-input me-1" />
-        {{ p }}
+        <input
+          type="checkbox"
+          class="form-check-input me-1"
+          [checked]="p.checked"
+          (change)="toggleChecked(p)"
+        />
+        {{ p.name }}
       </label>
     </li>
   }
