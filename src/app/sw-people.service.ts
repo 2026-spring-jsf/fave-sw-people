@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { map, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +11,12 @@ export class SwPeopleService {
   public getSwPeople() {
     const fromApi = this.http.get<any>('https://swapi.info/api/people');
 
-    return fromApi;
+    return fromApi.pipe(
+      tap((x) => console.log(x)),
+      map((x) => x.map((y: any) => y.name)),
+      tap((x) => console.log(x)),
+      map((x) => x.sort((a: any, b: any) => a.localeCompare(b))),
+      tap((x) => console.log(x)),
+    );
   }
 }
