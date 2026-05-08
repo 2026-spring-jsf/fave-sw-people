@@ -1,15 +1,48 @@
 <ul class="list-group">
-    <li class="list-group-item list-group-item-secondary text-black-50">Drew's Faves</li>
+    <li class="list-group-item list-group-item-secondary text-black-50">
+      Drew's Faves
+      <button 
+        class="btn btn-sm btn-primary ms-1"
+        (click)="postToMsTeams()"
+        >Post X {{ selectedCount() }}
+      </button>
+      <button class="btn btn-sm btn-link" (click)="clearSelected()">Clear</button>
+    </li>
   <li class="list-group-item">
-    <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox">
-    <label class="form-check-label" for="firstCheckbox">First checkbox</label>
-  </li>
+
   <li class="list-group-item">
-    <input class="form-check-input me-1" type="checkbox" value="" id="secondCheckbox">
-    <label class="form-check-label" for="secondCheckbox">Second checkbox</label>
+    <button 
+    class="btn btn-link"
+    (click)="promisesAsThenables()"
+    >Promises as then-ables</button>
   </li>
+
   <li class="list-group-item">
-    <input class="form-check-input me-1" type="checkbox" value="" id="thirdCheckbox">
-    <label class="form-check-label" for="thirdCheckbox">Third checkbox</label>
+    <button 
+    class="btn btn-link"
+    (click)="promisesWithAsyncAwait()"
+    >Promises with async/await</button>
   </li>
+
+  <li class="list-group-item">
+    <button 
+    class="btn btn-link"
+    (click)="promisesFun()"
+    >Promises fun!!!</button>
+  </li>
+
+
+    @for (p of swPeople(); track p) {
+      <li class="list-group-item">
+        <label>
+          <input 
+          type="checkbox" 
+          class="form-check-input me-1" 
+          [checked]="p.checked"
+          (change)="toggleChecked(p)"
+          />
+          {{ p.name }}</label>
+      </li>
+    }
+
 </ul>
