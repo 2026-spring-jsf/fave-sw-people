@@ -13,4 +13,15 @@ export class CsniderFaves {
   private swPeopleService  = inject(SwPeopleService);
 
   protected readonly people$ = this.swPeopleService.getSwPeople();
+  
+  protected promisesAsThenables() {
+    const number = this.swPeopleService.getMagicNumber(true).then(
+      n => {
+        console.log(n);
+        this.swPeopleService.getMagicNumber(true).then(
+          n2 => console.log(n2)
+        ).catch(e => console.warn(e));
+      }
+    ).catch(e => console.warn(e));
+  };
 }

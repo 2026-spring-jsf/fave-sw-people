@@ -18,4 +18,24 @@ export class SwPeopleService {
       map(x => x.sort((a: string, b: string) => a.localeCompare(b))),
     );
   }
+
+  public getMagicNumber(callerWantsToSucceed: boolean): Promise<number> {
+    return new Promise<number>(
+      (resolve, reject) => {
+
+        //
+        // Some fancy long running code here...
+        //
+
+        // Ultimately resolve to number...
+        if (callerWantsToSucceed) {
+          resolve(42);
+        }
+        // Or reject with error...
+        else {
+          reject("Error");
+        }
+      }
+    );
+  };
 }
