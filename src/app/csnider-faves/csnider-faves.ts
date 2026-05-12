@@ -36,4 +36,17 @@ export class CsniderFaves {
       console.warn(e);
     }
   }
+
+  protected async promisesFun() {
+  try  {
+    const numberOne = this.swPeopleService.getMagicNumber(true);
+    const numberTwo = this.swPeopleService.getMagicNumber(false);
+    //const data = await Promise.all([numberOne, numberTwo]);
+    const data = await Promise.any([numberOne, numberTwo]);
+    //onst data = await Promise.race([numberOne, numberTwo]);
+    console.log(data);
+  } catch (e) {
+    console.warn(e);
+  }
+  }
 }
