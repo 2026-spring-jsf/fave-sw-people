@@ -1,6 +1,13 @@
 <ul class="list-group">
     <li class="list-group-item list-group-item-secondary text-black-50">
         Craig's Faves
+        <button 
+            class="btn btn-sm btn-primary ms-1" 
+            (click)="postToMsTeams()"
+        >
+                Post {{ selectedCount() }}
+        </button>
+        <button class="btn btn-sm btm-link" (click)="clearSelected()">Clear</button>
     </li>
 
     <li class="list-group-item">
@@ -21,10 +28,17 @@
         </button>
     </li>
 
-    @for (p of people$ | async; track p) {
+    @for (p of swPeople(); track p) {
         <li class="list-group-item">
-            <input class="form-check-input me-1" type="checkbox" />
-            <label>{{ p }}</label>
+            <label>
+                <input 
+                    class="form-check-input me-1" .
+                    (change)="toggleChecked(p)" 
+                    [checked]="p.checked" 
+                    type="checkbox" 
+                />
+                    {{ p.name }}
+            </label>
         </li>
     }
 </ul>
