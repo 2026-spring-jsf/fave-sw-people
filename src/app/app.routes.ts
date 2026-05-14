@@ -9,6 +9,7 @@ import { MrooneyFaves } from './mrooney-faves/mrooney-faves';
 import { ThamiltonFaves } from './thamilton-faves/thamilton-faves';
 import { TsteeleFaves } from './tsteele-faves/tsteele-faves';
 import { SkhangFaves } from './skhang-faves/skhang-faves';
+import { KnorbuFaves } from './knorbu-faves/knorbu-faves';
 
 export const routes: Routes = [
   {
@@ -46,5 +47,9 @@ export const routes: Routes = [
   {
     path: 'skhang',
     component: SkhangFaves,
+  },
+  {
+    path: "knorbu",
+    component: KnorbuFaves,
   },
 ];
