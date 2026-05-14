@@ -8,17 +8,15 @@ type SwPerson = {
 };
 
 @Component({
-  selector: 'app-thamilton-faves',
+  selector: 'app-skhang-faves',
   imports: [],
-  templateUrl: './thamilton-faves.html',
-  styleUrl: './thamilton-faves.css',
+  templateUrl: './skhang-faves.html',
+  styleUrl: './skhang-faves.css',
 })
-export class ThamiltonFaves implements OnInit {
+export class SkhangFaves implements OnInit {
   private swPeopleSvc = inject(SwPeopleService);
 
-  //Naming convention: observables get a '$' at the end
-  //hover over a thing to see if it is an observable
-  //protected readonly people$ = this.swPeopleSvc.getSwPeople();
+  // protected readonly people$ = this.swPeopleSvc.getSwPeople();
 
   protected readonly swPeople = signal<SwPerson[]>([]);
 
@@ -55,9 +53,9 @@ export class ThamiltonFaves implements OnInit {
     );
   }
 
-  protected async postToMsTeams() {
+  protected async postToMSTeams() {
     await this.swPeopleSvc.postFavesToMsTeams({
-      name: `Tim's Faves (${this.selectedCount()})`,
+      name: `Shaun's Faves (${this.selectedCount()})`,
       faves: this.swPeople()
         .filter((x) => x.checked)
         .map((x) => x.name)
@@ -83,7 +81,8 @@ export class ThamiltonFaves implements OnInit {
     try {
       const numberOne = await this.swPeopleSvc.getMagicNumber(true);
       console.log(numberOne);
-      const numberTwo = await this.swPeopleSvc.getMagicNumber(true);
+
+      const numberTwo = await this.swPeopleSvc.getMagicNumber(false);
       console.log(numberTwo);
     } catch (e) {
       console.warn(e);
@@ -92,27 +91,17 @@ export class ThamiltonFaves implements OnInit {
 
   protected async promisesFun() {
     try {
-      //notice no 'await'
       const numberOne = this.swPeopleSvc.getMagicNumber(false);
+      // console.log(numberOne);c
+
       const numberTwo = this.swPeopleSvc.getMagicNumber(true);
+      // console.log(numberTwo);
 
-      /*
-      //this works only if all promises resolve and returns an array of promise values (not promises, but the promise values)
-      const data = await Promise.all([numberOne, numberTwo]);
-      */
+      // const data = await Promise.all([numberOne, numberTwo]);
 
-      /*
-      //this works only if not all promises are rejected (i.e. as long as at least one promise resolves) and returns only one promise value: the value of the first promise to resolve
       const data = await Promise.any([numberOne, numberTwo]);
-      */
 
-      /*
-      //this works whether any number of promises resolve or are rejected, and returns only one promise value: the value of the first promise to settle (whether that promise resolved or was rejected)
-      const data = await Promise.race([numberOne, numberTwo]);
-      */
-
-      //this works whether any number of promises resolve or are rejected, and returns an array of promise objects, each with 2 properties: status ('fulfilled' or 'rejected'), and value (if status is 'fulfilled'), or reason (if status is 'rejected')
-      const data = await Promise.allSettled([numberOne, numberTwo]);
+      // const data = await Promise.race([numberOne, numberTwo]);
 
       console.log(data);
     } catch (e) {
