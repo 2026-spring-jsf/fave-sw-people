@@ -2,24 +2,18 @@
   <li class="list-group-item list-group-item-secondary-text-black-50">
     Kelsang's Faves
   </li>
-  <li class="list-group-item">
-    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-    First checkbox
-  </li>
-  <li class="list-group-item">
-    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-    Second checkbox
-  </li>
-  <li class="list-group-item">
-    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-    Third checkbox
-  </li>
-  <li class="list-group-item">
-    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-    Fourth checkbox
-  </li>
-  <li class="list-group-item">
-    <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-    Fifth checkbox
-  </li>
+
+  @for (p of people$ | async; track p) {
+    <li
+      class="list-group-item"
+    >
+      <label>
+        <input
+          type="checkbox"
+          class="form-check-input me-1"
+        />
+        {{ p }}
+      </label>
+    </li>
+  }
 </ul>
