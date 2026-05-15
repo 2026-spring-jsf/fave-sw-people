@@ -34,7 +34,7 @@ export class KnorbuFaves {
     )
     ;
   }
-  
+
   protected async promisesWithAsyncAwait() {
     try {
 
@@ -44,6 +44,20 @@ export class KnorbuFaves {
       const numberTwo = await this.swPeopleSvc.getMagicNumber(true);
       console.log(numberTwo)
 
+      // const data = await Promise.all(
+      //   [numberOne, numberTwo]
+      // );
+    
+      const data = await Promise.any(
+        [numberOne, numberTwo]
+      );
+
+      // const data = await Promise.race(
+      //   [numberOne, numberTwo]
+      // );
+
+      console.log(data);
+    
     }
 
     catch (e) {
