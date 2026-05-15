@@ -34,4 +34,20 @@ export class KnorbuFaves {
     )
     ;
   }
+  
+  protected async promisesWithAsyncAwait() {
+    try {
+
+      const numberOne = await this.swPeopleSvc.getMagicNumber(true);
+      console.log(numberOne); // ? ? ?
+    
+      const numberTwo = await this.swPeopleSvc.getMagicNumber(true);
+      console.log(numberTwo)
+
+    }
+
+    catch (e) {
+      console.warn(e);
+    }
+  }
 }
